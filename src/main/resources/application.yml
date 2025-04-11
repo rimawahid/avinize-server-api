@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowed-headers: "*"
+            allowed-origins: "*"
+            allowed-origin-patterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTION
+        add-to-simple-url-handler-mapping: true
+      routes:
+        - id: Auth & Super Admin
+          uri: lb://avinize-server-super-admin
+          predicates:
+            - Path=/avinize-server-super-admin/v3/api-docs/**
+          filters:
+            - RewritePath=/avinize-server-super-admin/v3/api-docs/(?<path>.*), /$\{path}
+
+        - id: Budget
+          uri: lb://fpbs-server-budget
+          predicates:
+            - Path=/fpbs-server-budget/v3/api-docs/**
+          filters:
+            - RewritePath=/fpbs-server-budget/v3/api-docs/(?<path>.*), /$\{path}
+      
