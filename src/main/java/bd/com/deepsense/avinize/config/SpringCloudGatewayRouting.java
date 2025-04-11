@@ -22,11 +22,7 @@ public class SpringCloudGatewayRouting {
                 .route("avinize-server-super-admin", r->r.path("/*/private/sya/**").filters(f -> f.filter(filter)).uri("lb://avinize-server-super-admin"))
                 .route("avinize-server-super-admin", r->r.path("/*/public/common/**").uri("lb://avinize-server-super-admin"))
                 .route("avinize-server-super-admin", r->r.path("/*/private/common/**").filters(f -> f.filter(filter)).uri("lb://avinize-server-super-admin"))
-                .route("fpbs-server-budget", r->r.path("/*/public/budget/**").uri("lb://fpbs-server-budget"))
-                .route("fpbs-server-budget", r->r.path("/*/private/budget/**").filters(f -> f.filter(filter)).uri("lb://fpbs-server-budget"))
-                .route("fpbs-server-budget", r->r.path("/*/public/other/**").uri("lb://fpbs-server-budget"))
-                .route("fpbs-server-budget", r->r.path("/*/private/other/**").filters(f -> f.filter(filter)).uri("lb://fpbs-server-budget"))
-            .build();
+                .build();
     }
 
 }
